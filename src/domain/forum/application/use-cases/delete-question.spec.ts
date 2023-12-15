@@ -30,7 +30,7 @@ describe('Delete question', () => {
 
   it('should not be able to delete a question form another user', async () => {
     const newQuestion = makeQuestion(
-      { authorId: new UniqueEntityID('author-2') },
+      { authorId: new UniqueEntityID('author-1') },
       new UniqueEntityID('question-1'),
     )
 
