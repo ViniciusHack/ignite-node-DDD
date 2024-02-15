@@ -1,10 +1,10 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { makeAnswer } from 'test/factories/make-answer'
 import { makeAnswerAttachment } from 'test/factories/make-answer-attachment'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answers-attachments-repository'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 import { DeleteAnswerUseCase } from './delete-answer'
-import { NotAllowedError } from './errors/not-allowed-error'
 
 let sut: DeleteAnswerUseCase
 let inMemoryAnswersRepository: InMemoryAnswersRepository
@@ -48,7 +48,7 @@ describe('Delete answer', () => {
     expect(inMemoryAnswerAttachmentsRepository.items).toHaveLength(0)
   })
 
-  it('should not be able to delete an answer form another user', async () => {
+  it('should not be able to delete an answer from another user', async () => {
     const newAnswer = makeAnswer(
       { authorId: new UniqueEntityID('author-1') },
       new UniqueEntityID('answer-1'),
